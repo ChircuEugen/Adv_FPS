@@ -48,8 +48,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        move.y = 0f;
+        move.Normalize();
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(speed * Time.deltaTime * move);
 
         if(jumpAction.triggered && isGrounded)
         {

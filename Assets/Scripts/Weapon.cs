@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     public int burstBulletsLeft;
 
     // Spreat Settings
-    public float spreatIntensity;
+    public float sprayIntensity;
 
     public enum ShootingMode
     {
@@ -108,8 +108,8 @@ public class Weapon : MonoBehaviour
         }
 
         Vector3 direction = targetPoint - bulletSpawnPoint.position;
-        float x = UnityEngine.Random.Range(-spreatIntensity, spreatIntensity);
-        float y = UnityEngine.Random.Range(-spreatIntensity, spreatIntensity);
+        float x = UnityEngine.Random.Range(-sprayIntensity, sprayIntensity);
+        float y = UnityEngine.Random.Range(-sprayIntensity, sprayIntensity);
 
         return direction + new Vector3(x, y, 0);
     }
@@ -120,8 +120,4 @@ public class Weapon : MonoBehaviour
         allowReset = true;
     }
 
-    private void OnDisable()
-    {
-        shootAction.performed -= _ => FireWeapon();
-    }
 }

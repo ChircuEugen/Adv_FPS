@@ -8,8 +8,20 @@ public class Bullet : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
+            CreateBulletImactEffect(collision);
             Debug.Log("!!!");
         }
         Destroy(gameObject);
     }
+
+    private void CreateBulletImactEffect(Collision collision)
+    {
+        ContactPoint contactPoint = collision.GetContact(0);
+
+        GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpactEffectPrefab, 
+            contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
+
+        hole.transform.SetParent(collision.transform);
+    }
+
 }
